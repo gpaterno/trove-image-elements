@@ -12,6 +12,7 @@ print_usage() {
     echo " -d | --distro: name of the system to use. Possible options are fedora, centos or rhel."
     echo " -s | --datastore: name of the storage backend to use. Possible options are mysql, mongodb, or postgresql."
     echo " -i | --local-image: path to the local image. Defaults to diskimage-builder location."
+    echo " -t | --tmp-dir: set an alternate temporary location to build the image (defaults to /tmp)."
     echo " -u | --rh-user: subscription user for rhel."
     echo " -p | --rh-password: subcription password for rhel."
     echo " -o | --rh-pool-id: pool id to attach to in rhel."
@@ -45,6 +46,10 @@ parse_arguments() {
                 export DIB_LOCAL_IMAGE=$2
 		shift 2
             ;;
+            -t|--tmp-dir)
+                # Set alternate temp dir
+                export TMP_DIR=$2
+                shift 2
             -u|--rh-user)
                 export REG_USER=$2
 		shift 2
